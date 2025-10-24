@@ -1,0 +1,160 @@
+# Claude Code Configuration for Database Reliability Engineering
+# Customize these settings for your workflow preferences
+
+# Default workflow mode
+# Options: "strict" (TDD enforced, all gates required) or "flexible" (guided but optional)
+default_mode: strict
+
+# Testing preferences
+testing:
+  framework: pytest
+  coverage_threshold: 80
+  require_integration_tests: true
+  use_testcontainers: true  # For PostgreSQL integration tests
+
+# Code quality settings
+quality:
+  enforce_type_hints: true
+  enforce_docstrings: true
+  max_function_length: 50
+  max_complexity: 10
+
+# Programming paradigms to emphasize
+paradigms:
+  - TDD
+  - Clean Code
+  - SOLID
+  - DRY
+  - Domain Driven Design
+  - Pythonic
+
+# Auto-include agents for specific tasks
+auto_agents:
+  database_tasks:
+    - sql-optimizer
+    - dre-architect
+  code_review:
+    - clean-code-reviewer
+    - python-tdd-coach
+  design:
+    - ddd-designer
+
+# Project templates
+project_templates:
+  cli_tool:
+    structure:
+      - src/{project_name}/
+      - src/{project_name}/domain/
+      - src/{project_name}/application/
+      - src/{project_name}/infrastructure/
+      - src/{project_name}/interface/
+      - tests/unit/
+      - tests/integration/
+      - tests/fixtures/
+      - docs/
+    files:
+      - pyproject.toml
+      - README.md
+      - .gitignore
+      - .pre-commit-config.yaml
+    dependencies:
+      - click  # or typer
+      - psycopg2-binary
+      - pydantic
+      - python-dotenv
+      - structlog
+    dev_dependencies:
+      - pytest
+      - pytest-cov
+      - pytest-mock
+      - testcontainers
+      - black
+      - ruff
+      - mypy
+
+  library:
+    structure:
+      - src/{project_name}/
+      - tests/
+      - docs/
+    files:
+      - pyproject.toml
+      - README.md
+      - .gitignore
+    dependencies:
+      - psycopg2-binary
+      - pydantic
+    dev_dependencies:
+      - pytest
+      - pytest-cov
+      - black
+      - ruff
+      - mypy
+
+# PostgreSQL specific settings
+postgresql:
+  default_port: 5432
+  default_pool_size: 10
+  connection_timeout: 30
+  preferred_extensions:
+    - pg_stat_statements
+    - pg_cron
+    - pgvector
+  metrics_collection_interval: 60  # seconds
+
+# Git workflow preferences
+git:
+  auto_commit_message_template: |
+    {type}: {description}
+
+    {body}
+
+    🤖 Generated with Claude Code
+    Co-Authored-By: Claude <noreply@anthropic.com>
+  require_tests_before_commit: true
+  pre_commit_hooks:
+    - black
+    - ruff
+    - mypy
+    - pytest
+
+# Documentation preferences
+documentation:
+  docstring_style: google  # or numpy, sphinx
+  generate_api_docs: true
+  include_examples: true
+
+# Orchestrator behavior
+orchestrator:
+  ask_before_major_decisions: true
+  show_delegation_reasoning: true
+  build_muscle_memory: true  # Ask user to identify correct agent
+  celebrate_progress: true
+  use_todo_lists: true
+
+# Custom workflow steps (optional)
+custom_workflows:
+  database_migration:
+    - design_schema
+    - write_migration_tests
+    - implement_migration
+    - write_rollback
+    - test_rollback
+    - review_performance
+
+  cdc_pipeline:
+    - design_pipeline_architecture
+    - implement_snapshot
+    - implement_cdc
+    - test_exactly_once_semantics
+    - add_monitoring
+    - document_operations
+
+# Notification preferences (future use)
+notifications:
+  on_test_failure: true
+  on_quality_gate_failure: true
+  on_workflow_completion: true
+
+# Learning mode - provides more explanations
+learning_mode: true
